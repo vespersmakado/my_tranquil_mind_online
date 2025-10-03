@@ -1,23 +1,32 @@
+/* Navbar wrapper */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background: #f8f9fa; /* ✅ Off-white, softer than pure white */
-  color: #333;
+  background: #f8f8f8; /* soft off-white */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
+  width: 100%;
   z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* subtle shadow */
 }
 
+/* Container aligns logo left + links right */
+.navbar-container {
+  display: flex;
+  justify-content: space-between; /* LOGO left, LINKS right */
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 0;
+}
+
+/* Logo */
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: bold;
-  color: #4a47a3; /* matches your buttons (purple accent) */
+  color: #333;
 }
 
-/* Default desktop nav */
+/* Nav links default (desktop) */
 .nav-links {
   list-style: none;
   display: flex;
@@ -25,18 +34,31 @@
 }
 
 .nav-links a {
-  color: #333; /* dark gray for readability */
+  color: #333;
   text-decoration: none;
   font-weight: 500;
   transition: 0.3s;
 }
 
 .nav-links a:hover {
-  color: #4a47a3; /* purple accent on hover */
+  color: #6c63ff;
   transform: scale(1.05);
 }
 
-/* Mobile toggle button (hamburger) */
+/* Special style for Sign Up button */
+.nav-links .btn {
+  background: #6c63ff;
+  color: #fff !important;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.nav-links .btn:hover {
+  background: #5750d4;
+}
+
+/* Hamburger (hidden on desktop) */
 .menu-toggle {
   display: none;
   font-size: 1.8rem;
@@ -44,26 +66,26 @@
   color: #333;
 }
 
-/* --- Responsive Styles --- */
+/* --- Responsive --- */
 @media (max-width: 768px) {
   .nav-links {
-    display: none; /* hide links by default */
+    display: none; /* hidden by default on mobile */
     flex-direction: column;
     position: absolute;
     top: 60px;
     right: 20px;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.95);
     padding: 20px;
     border-radius: 10px;
     width: 200px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   }
 
   .nav-links.active {
-    display: flex; /* show menu when toggled */
+    display: flex; /* show when toggled */
   }
 
   .menu-toggle {
-    display: block; /* show hamburger on mobile */
+    display: block; /* show hamburger */
   }
 }
