@@ -45,19 +45,6 @@
   transform: scale(1.05);
 }
 
-/* Special style for Sign Up button */
-.nav-links .btn {
-  background: #6c63ff;
-  color: #fff !important;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-}
-
-.nav-links .btn:hover {
-  background: #5750d4;
-}
-
 /* Hamburger (hidden on desktop) */
 .menu-toggle {
   display: none;
