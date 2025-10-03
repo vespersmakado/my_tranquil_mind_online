@@ -1,29 +1,18 @@
 // src/pages/Lessons.tsx
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Lessons.css";
-
-interface Lesson {
-  id: number;
-  title: string;
-  content: string;
-}
+import { LESSONS_DATA, Lesson } from "../data/lessons"; // ✅ import data
 
 const Lessons: React.FC = () => {
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/lessons")
-      .then((res) => res.json())
-      .then((data) => {
-        setLessons(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching lessons:", err);
-        setLoading(false);
-      });
+    setTimeout(() => {
+      setLessons(LESSONS_DATA); // ✅ now pulling from central data
+      setLoading(false);
+    }, 1000);
   }, []);
 
   if (loading) return <h2 className="loading">Loading lessons...</h2>;

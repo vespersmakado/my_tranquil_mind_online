@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState(""); // ✅ success message
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault(); // stop page reload
+    setMessage("🎉 You are officially in! We’ll track your progress with every step you take 🚀");
+
+
+  };
 
   return (
     <div
@@ -51,7 +59,7 @@ const Login: React.FC = () => {
         </p>
 
         {/* Form */}
-        <form>
+        <form onSubmit={handleLogin}>
           {/* Email */}
           <div style={{ marginBottom: "20px" }}>
             <label style={{ display: "block", marginBottom: "6px", fontWeight: 500 }}>
@@ -159,6 +167,20 @@ const Login: React.FC = () => {
           </button>
         </form>
 
+        {/* ✅ Success message */}
+        {message && (
+          <p
+            style={{
+              marginTop: "20px",
+              textAlign: "center",
+              color: "green",
+              fontWeight: 600,
+            }}
+          >
+            {message}
+          </p>
+        )}
+
         {/* Divider */}
         <div
           style={{
@@ -216,4 +238,3 @@ const Login: React.FC = () => {
 };
 
 export default Login;
-

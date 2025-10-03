@@ -1,88 +1,165 @@
+/* LessonDetail.css */
+
+/* Container for the whole page */
 .lesson-detail {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Lesson title */
 .lesson-title {
   font-size: 2rem;
-  margin-bottom: 10px;
-  color: #4a148c;
-}
-
-.lesson-content {
-  font-size: 1rem;
-  margin-bottom: 30px;
-  line-height: 1.6;
-  color: #444;
-}
-
-.quiz-header {
-  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
   margin-bottom: 20px;
-  color: #2e7d32;
 }
 
+/* Notes / lesson content */
+.lesson-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 35px;
+  white-space: pre-line; /* keeps line breaks from content */
+}
+
+/* Quiz section */
+.quiz-section {
+  margin-top: 20px;
+}
+
+/* Quiz question card */
 .quiz-card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 15px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.25s ease;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
 }
 
-.quiz-card:hover {
-  transform: translateY(-3px);
+/* Question text */
+.quiz-question {
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #34495e;
 }
 
-.options {
-  display: flex;
-  flex-direction: column;
+/* Options */
+.quiz-option {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Submit button */
+.quiz-submit-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #2980b9;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 15px;
+  transition: background 0.3s;
+}
+
+.quiz-submit-btn:hover {
+  background: #1f6391;
+}
+
+/* Score / feedback */
+.quiz-feedback {
+  font-weight: bold;
   margin-top: 10px;
 }
 
-.option {
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background 0.2s ease;
+.quiz-feedback.correct {
+  color: green;
 }
 
-.option:hover {
-  background: #f5f5f5;
+.quiz-feedback.incorrect {
+  color: red;
 }
 
-.option input {
-  margin-right: 10px;
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .lesson-detail {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .lesson-title {
+    font-size: 1.8rem;
+  }
+
+  .lesson-content {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
 }
 
-.submit-btn {
-  display: inline-block;
-  padding: 12px 20px;
-  background: #6a1b9a;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background 0.3s ease;
+@media (max-width: 768px) {
+  .lesson-detail {
+    margin: 20px;
+    padding: 18px;
+  }
+
+  .lesson-title {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .lesson-content {
+    font-size: 0.95rem;
+  }
+
+  .quiz-card {
+    padding: 12px;
+  }
+
+  .quiz-option {
+    font-size: 0.95rem;
+  }
+
+  .quiz-submit-btn {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+  }
 }
 
-.submit-btn:hover {
-  background: #4a148c;
-}
+@media (max-width: 480px) {
+  .lesson-detail {
+    padding: 15px;
+  }
 
-.result-box {
-  margin-top: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  background: #e8f5e9;
-  padding: 15px;
-  border-radius: 8px;
-  color: #2e7d32;
+  .lesson-title {
+    font-size: 1.4rem;
+  }
+
+  .lesson-content {
+    font-size: 0.9rem;
+  }
+
+  .quiz-question {
+    font-size: 1rem;
+  }
+
+  .quiz-option {
+    font-size: 0.9rem;
+  }
+
+  .quiz-submit-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
 }

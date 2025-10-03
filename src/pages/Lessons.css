@@ -64,3 +64,84 @@
 .lesson-btn:hover {
   background: #4a148c;
 }
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .lesson-card {
+    padding: 18px;
+  }
+
+  .lesson-title {
+    font-size: 1.1rem;
+  }
+
+  .lesson-content {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .lessons-container {
+    padding: 15px;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .lessons-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
+  }
+
+  .lesson-card {
+    padding: 16px;
+  }
+
+  .lesson-title {
+    font-size: 1rem;
+  }
+
+  .lesson-content {
+    font-size: 0.9rem;
+  }
+
+  .lesson-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  .lessons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-card {
+    padding: 14px;
+  }
+
+  .lesson-title {
+    font-size: 0.95rem;
+  }
+
+  .lesson-content {
+    font-size: 0.85rem;
+  }
+
+  .lesson-btn {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}

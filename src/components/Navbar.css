@@ -15,6 +15,7 @@
   font-weight: bold;
 }
 
+/* Default desktop nav */
 .nav-links {
   list-style: none;
   display: flex;
@@ -31,4 +32,35 @@
 .nav-links a:hover {
   text-decoration: underline;
   transform: scale(1.05);
+}
+
+/* Mobile toggle button (hamburger) */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* hide links by default */
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+  }
+
+  .nav-links.active {
+    display: flex; /* show menu when toggled */
+  }
+
+  .menu-toggle {
+    display: block; /* show hamburger on mobile */
+  }
 }

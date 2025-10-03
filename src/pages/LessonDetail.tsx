@@ -1,95 +1,81 @@
 // src/pages/LessonDetail.tsx
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { LESSONS_DATA, QUIZZES_DATA } from "../data";
+import "./LessonDetail.css";
 
-interface Lesson {
-  id: number;
-  title: string;
-  content: string;
-}
-
-interface Quiz {
-  id: number;
-  question: string;
-  option_a: string;
-  option_b: string;
-  option_c: string;
-  option_d: string;
-  correct_option: string;
-}
+const OPTION_KEYS: Array<"A" | "B" | "C" | "D"> = ["A", "B", "C", "D"];
 
 const LessonDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [lesson, setLesson] = useState<Lesson | null>(null);
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
-  const [answers, setAnswers] = useState<{ [key: number]: string }>({});
+  const lessonId = Number(id);
+
+  const lesson = LESSONS_DATA.find((l) => l.id === lessonId);
+  const quizzes = QUIZZES_DATA.filter((q) => q.lessonId === lessonId);
+
+  const [answers, setAnswers] = useState<{ [index: number]: string }>({});
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => {
-    // Fetch lesson content
-    fetch(`http://localhost:5000/api/lessons/${id}`)
-      .then((res) => res.json())
-      .then((data) => setLesson(data));
+  if (!lesson) return <h2>Lesson not found</h2>;
 
-    // Fetch quizzes for this lesson
-    fetch(`http://localhost:5000/api/lessons/${id}/quizzes`)
-      .then((res) => res.json())
-      .then((data) => setQuizzes(data));
-  }, [id]);
-
-  const handleOptionChange = (quizId: number, option: string) => {
-    setAnswers({ ...answers, [quizId]: option });
+  const handleOptionChange = (quizIndex: number, option: "A" | "B" | "C" | "D") => {
+    setAnswers((prev) => ({ ...prev, [quizIndex]: option }));
   };
 
-  const handleSubmit = () => {
-    setSubmitted(true);
-  };
+  const handleSubmit = () => setSubmitted(true);
+
+  const score = quizzes.reduce((acc, quiz, idx) => (answers[idx] === quiz.correctOption ? acc + 1 : acc), 0);
 
   return (
-    <div style={{ maxWidth: "800px", margin: "30px auto", padding: "20px", background: "#fff", borderRadius: "10px", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
-      {lesson && (
-        <>
-          <h1 style={{ color: "#2c3e50", marginBottom: "15px" }}>{lesson.title}</h1>
-          <p style={{ lineHeight: "1.7", color: "#555", marginBottom: "30px" }}>{lesson.content}</p>
-        </>
-      )}
+    <div className="lesson-detail">
+      <h1 className="lesson-title">{lesson.title}</h1>
+      <div className="lesson-content" style={{ whiteSpace: "pre-line" }}>{lesson.content}</div>
 
-      <h2 style={{ color: "#34495e", marginBottom: "20px" }}>Quiz</h2>
+      <h2>Quiz</h2>
+
       {quizzes.length === 0 ? (
         <p>No quizzes available for this lesson.</p>
       ) : (
-        <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
-          {quizzes.map((quiz) => (
-            <div key={quiz.id} style={{ marginBottom: "25px", padding: "15px", border: "1px solid #ddd", borderRadius: "8px", background: "#f9f9f9" }}>
-              <p style={{ fontWeight: "bold", marginBottom: "10px" }}>{quiz.question}</p>
-              {["A", "B", "C", "D"].map((option) => {
-                const optionText = (quiz as any)[`option_${option.toLowerCase()}`];
-                return (
-                  <label key={option} style={{ display: "block", marginBottom: "8px", cursor: "pointer" }}>
-                    <input
-                      type="radio"
-                      name={`quiz-${quiz.id}`}
-                      value={option}
-                      checked={answers[quiz.id] === option}
-                      onChange={() => handleOptionChange(quiz.id, option)}
-                      style={{ marginRight: "8px" }}
-                    />
-                    {option}. {optionText}
-                  </label>
-                );
-              })}
+        <form
+          className="quiz-section"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit();
+          }}
+        >
+          {quizzes.map((quiz, index) => (
+            <div key={index} className="quiz-card">
+              <p className="quiz-question">{`Q${index + 1}: ${quiz.question}`}</p>
+
+              {OPTION_KEYS.map((k) => (
+                <label key={k} className="quiz-option">
+                  <input
+                    type="radio"
+                    name={`quiz-${index}`}
+                    value={k}
+                    checked={answers[index] === k}
+                    onChange={() => handleOptionChange(index, k)}
+                    disabled={submitted}
+                    style={{ marginRight: 8 }}
+                  />
+                  <strong>{k}.</strong> {quiz.options[k]}
+                </label>
+              ))}
+
               {submitted && (
-                <p style={{ marginTop: "10px", fontWeight: "bold", color: answers[quiz.id] === quiz.correct_option ? "green" : "red" }}>
-                  {answers[quiz.id] === quiz.correct_option ? "✅ Correct" : `❌ Incorrect. Correct answer: ${quiz.correct_option}`}
+                <p className={`quiz-feedback ${answers[index] === quiz.correctOption ? "correct" : "incorrect"}`}>
+                  {answers[index] === quiz.correctOption
+                    ? "✅ Correct!"
+                    : `❌ Incorrect. Correct: ${quiz.correctOption}. ${quiz.options[quiz.correctOption]}`}
                 </p>
               )}
             </div>
           ))}
 
-          {!submitted && (
-            <button type="submit" style={{ padding: "10px 20px", background: "#2980b9", color: "#fff", border: "none", borderRadius: "6px", cursor: "pointer" }}>
-              Submit Quiz
-            </button>
+          {!submitted ? (
+            <button type="submit" className="quiz-submit-btn">Submit Quiz</button>
+          ) : (
+            <p className="quiz-score">🎯 You scored {score} out of {quizzes.length}</p>
           )}
         </form>
       )}

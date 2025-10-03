@@ -1,3 +1,4 @@
+
 // src/pages/Home.tsx
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -59,13 +60,35 @@ const Home: React.FC = () => {
             background: "rgba(255,255,255,0.08)",
           }}
         />
-        <h1 style={{ fontSize: "64px", fontWeight: 800, marginBottom: "20px" }}>
-          Find Your Calm, Learn at Your Own Pace
-        </h1>
-        <p style={{ margin: "20px auto", fontSize: "22px", maxWidth: "700px" }}>
-          Discover guided mindfulness lessons, breathing techniques, and a
-          supportive community to help you grow in peace and focus.
-        </p>
+<h1 style={{ 
+  fontSize: "72px", 
+  fontWeight: 300, 
+  marginBottom: "30px",
+  color: "#ffffff",
+  lineHeight: "1.1",
+  fontFamily: "'Georgia', 'Times New Roman', serif",
+  letterSpacing: "-0.5px"
+}}>
+  Find Your <span style={{fontWeight: "700", color: "#e3f2fd"}}>Calm</span>,<br />
+  Learn at Your <span style={{fontWeight: "700", color: "#e3f2fd"}}>Own Pace</span>
+</h1>
+<p style={{ 
+  margin: "30px auto", 
+  fontSize: "24px", 
+  maxWidth: "700px",
+  lineHeight: "1.7",
+  color: "rgba(255, 255, 255, 0.9)",
+  padding: "20px 0",
+  fontFamily: "'Helvetica Neue', Arial, sans-serif",
+  fontWeight: "300",
+  borderTop: "1px solid rgba(255, 255, 255, 0.2)",
+  borderBottom: "1px solid rgba(255, 255, 255, 0.2)"
+}}>
+  Discover <strong style={{fontWeight: "600", color: "#ffffff"}}>guided mindfulness lessons</strong>, 
+  master <em style={{fontStyle: "italic", color: "#e3f2fd"}}>breathing techniques</em>, 
+  and join a <strong style={{fontWeight: "600", color: "#ffffff"}}>supportive community </strong> 
+  to cultivate <strong style={{fontWeight: "700", color: "#e3f2fd"}}>peace and focus</strong>.
+</p>
         <div style={{ marginTop: "40px" }}>
           <Link
             to="/lessons"
