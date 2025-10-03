@@ -1,25 +1,23 @@
 .navbar {
-  background: linear-gradient(135deg, #6dd5ed, #2193b0);
-  padding: 15px 20px;
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 15px 40px;
+  background: #f8f9fa; /* ✅ Off-white, softer than pure white */
+  color: #333;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* subtle shadow */
 }
 
 .logo {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: bold;
+  color: #4a47a3; /* matches your buttons (purple accent) */
 }
 
+/* Default desktop nav */
 .nav-links {
   list-style: none;
   display: flex;
@@ -27,42 +25,45 @@
 }
 
 .nav-links a {
-  color: white;
+  color: #333; /* dark gray for readability */
   text-decoration: none;
   font-weight: 500;
   transition: 0.3s;
 }
 
 .nav-links a:hover {
-  text-decoration: underline;
+  color: #4a47a3; /* purple accent on hover */
+  transform: scale(1.05);
 }
 
-/* Hamburger */
+/* Mobile toggle button (hamburger) */
 .menu-toggle {
   display: none;
   font-size: 1.8rem;
   cursor: pointer;
+  color: #333;
 }
 
-/* Responsive */
+/* --- Responsive Styles --- */
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
+    display: none; /* hide links by default */
     flex-direction: column;
     position: absolute;
     top: 60px;
     right: 20px;
-    background: rgba(0, 0, 0, 0.9);
+    background: #ffffff;
     padding: 20px;
     border-radius: 10px;
     width: 200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   }
 
   .nav-links.active {
-    display: flex;
+    display: flex; /* show menu when toggled */
   }
 
   .menu-toggle {
-    display: block;
+    display: block; /* show hamburger on mobile */
   }
 }
