@@ -1,7 +1,7 @@
 // src/App.tsx
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./layout/Navbar";
+import Navbar from "./components/Navbar";
 import Footer from "./layout/Footer";
 
 import Progress from "./pages/Progress";
