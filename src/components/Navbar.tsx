@@ -24,6 +24,7 @@ const Navbar: React.FC = () => {
         <ul className={`nav-links ${isOpen ? "active" : ""}`}>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/lessons">Lessons</Link></li>
+          <li><Link to="/progress">Progress</Link></li>
           <li><Link to="/login">Login</Link></li>
           <li><Link to="/register">Sign Up</Link></li> 
         </ul>
