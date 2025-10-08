@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
     <nav className="navbar">
       <div className="navbar-container">
         {/* Logo left */}
-        <div className="logo">🌿 MyTranquilMind</div>
+        <div className="logo">🌿 My Tranquil Mind</div>
 
         {/* Hamburger toggle (mobile) */}
         <div className="menu-toggle" onClick={toggleMenu}>

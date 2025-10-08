@@ -132,7 +132,7 @@ const Home: React.FC = () => {
             marginBottom: "50px",
           }}
         >
-          Why Choose <span style={{ color: "#6c63ff" }}>MyTranquilMind?</span>
+          Why Choose <span style={{ color: "#6c63ff" }}>My Tranquil Mind?</span>
         </h2>
         <div
           style={{
